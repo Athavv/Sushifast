@@ -1,0 +1,136 @@
+/* --- GLOBAL --- */
+.detail-page-wrapper {
+  background-color: #0b1220;
+  min-height: 100vh;
+  /* FORCE TOUT LE TEXTE EN BLANC */
+  color: #ffffff !important;
+  padding-bottom: 5rem;
+}
+
+/* On s'assure que les sous-éléments héritent du blanc */
+.detail-page-wrapper h1,
+.detail-page-wrapper h2,
+.detail-page-wrapper span,
+.detail-page-wrapper div,
+.detail-page-wrapper button {
+  color: #ffffff;
+}
+
+.detail-page-wrapper .text-muted {
+  color: #9ca3af !important; /* Gris clair pour le texte secondaire */
+}
+
+/* --- SECTION IMAGE (Agrandi) --- */
+.image-wrapper-pro {
+  position: relative;
+  width: 100%;
+  /* On donne de la hauteur min pour que l'image ne fasse pas "écrasée" */
+  min-height: 400px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Petit fond subtil pour combler le vide si l'image est trop petite */
+  background: radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, rgba(11,18,32,0) 70%);
+  border-radius: 20px;
+}
+
+.detail-hero-img {
+  width: 100%; /* Force l'image à prendre toute la largeur */
+  height: auto;
+  /* Si l'image est vraiment trop pixelisée, on peut limiter le max-width */
+  /* max-width: 800px; */ 
+  object-fit: contain;
+  /* Ombre portée pour donner du volume */
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
+  transition: transform 0.3s ease;
+}
+
+
+
+.floating-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ef444474;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  padding: 5px 15px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+}
+
+/* --- PRIX & TITRE --- */
+.price-display {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #ef4444 !important; /* ROUGE */
+}
+
+/* --- BOUTONS QUANTITÉ STYLISÉS --- */
+.action-box {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50px;
+  padding: 5px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.qty-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: transparent;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  line-height: 1;
+  padding-bottom: 4px; /* Ajustement visuel du "-" */
+}
+
+.qty-btn:hover {
+  background: #ef4444;
+  border-color: #ef4444;
+  transform: scale(1.1);
+}
+
+.qty-value {
+  width: 50px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+/* --- BOUTON AJOUTER --- */
+.btn-action-pro {
+  background-color: #ef4444;
+  border: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 1rem;
+  transition: all 0.3s;
+}
+
+.btn-action-pro:hover {
+  background-color: #dc2626;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+}
+
+/* --- INGRÉDIENTS --- */
+.ingredient-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 0;
+}
