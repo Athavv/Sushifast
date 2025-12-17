@@ -1,0 +1,30 @@
+.sushi-hero {
+  position: relative;
+  width: 100%;
+  min-height: 80vh;
+  overflow: hidden;
+}
+
+.sushi-hero video {
+  object-fit: cover;
+}
+
+.sushi-hero-overlay {
+  background: radial-gradient(circle at top left, rgba(255, 77, 77, 0.7), transparent),
+              radial-gradient(circle at bottom right, rgba(0, 0, 0, 0.9), transparent);
+  mix-blend-mode: multiply;
+}
+
+.sushi-hero-title {
+  text-shadow: 0 18px 45px rgba(0, 0, 0, 0.9);
+}
+
+.sushi-hero-lead {
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+}
+
+.sushi-hero-scroll svg {
+  filter: drop-shadow(0 0 16px rgba(0, 0, 0, 0.8));
+}
+
+

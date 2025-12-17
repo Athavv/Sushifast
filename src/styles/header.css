@@ -1,0 +1,15 @@
+.sushi-navbar {
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.9) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sushi-navbar-brand {
+  font-size: 1.25rem;
+  letter-spacing: 0.04em;
+}
+
+.sushi-navbar-highlight {
+  color: #ff4d4d;
+}
+

@@ -1,0 +1,61 @@
+.sushi-sidebar {
+  background: #0b1220; /* même teinte que le fond du site */
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+  color: #ffffff;
+  min-height: 70vh;
+  padding-inline: 0.5rem;
+  max-width: 250px; /* rend visuellement la barre très fine */
+}
+
+.sushi-sidebar:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.28);
+}
+
+.sushi-sidebar h5 {
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.sushi-sidebar .form-check-label {
+  text-transform: capitalize;
+  color: #ffffff;
+  font-size: 0.85rem;
+}
+
+.sushi-sidebar .btn {
+  font-size: 0.7rem;
+  padding: 0.15rem 0.5rem;
+}
+
+.sushi-sidebar input[type="search"] {
+  box-shadow: none;
+  background: rgba(255, 255, 255, 0.06);
+  color: inherit;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.sushi-sidebar input[type="search"]::placeholder {
+  color: inherit;
+}
+
+.sushi-sidebar hr {
+  opacity: 0.25;
+}
+
+.sushi-sidebar .btn-outline-secondary {
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #e5e7eb;
+}
+
+.sushi-sidebar .btn-outline-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+
+

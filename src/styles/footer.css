@@ -1,0 +1,19 @@
+.sushi-footer {
+  background: #050608;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sushi-footer p {
+  letter-spacing: 0.04em;
+}
+
+.sushi-footer a {
+  opacity: 0.9;
+}
+
+.sushi-footer a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+
