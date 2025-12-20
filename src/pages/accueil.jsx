@@ -11,9 +11,9 @@ function Accueil() {
     search: "",
     saveurs: [],
     noCalifornia: false,
-    piecesFilter: "all", // "all" | "lt13"
-    selectedPieces: [], // liste des tailles sélectionnées
-    extreme: "none", // "none" | "max" | "min"
+    piecesFilter: "all",
+    selectedPieces: [],
+    extreme: "none",
   });
 
   useEffect(() => {
@@ -58,6 +58,12 @@ function Accueil() {
     return base;
   }, [menus, filters]);
 
+  const totalPriceLt13 = useMemo(() => {
+    return menus
+      .filter((m) => m.pieces < 13)
+      .reduce((total, m) => total + (m.prix || 0), 0);
+  }, [menus]);
+
   return (
     <>
       <Hero />
@@ -74,6 +80,12 @@ function Accueil() {
           </div>
 
           <div className="cards-wrapper">
+            {filters.piecesFilter === "lt13" && (
+              <div className="price-total-display mb-4">
+                <p className="price-total-display-label">Prix total des menus &lt; 13 pièces</p>
+                <p className="price-total-display-value">{totalPriceLt13.toFixed(2)} €</p>
+              </div>
+            )}
             <Row className="cards-row g-4">
               {filtered.map((item) => (
                 <Col key={item.id} xs={12} sm={6} md={6} lg={4} xl={3} className="d-flex">

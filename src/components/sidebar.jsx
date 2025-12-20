@@ -14,6 +14,7 @@ function Sidebar({ menus = [], onChange }) {
     prix: true,
     pieces: true,
     recherche: true,
+    plusDemandes: true,
   });
 
   const uniqueSaveurs = useMemo(() => {
@@ -26,6 +27,12 @@ function Sidebar({ menus = [], onChange }) {
     const p = new Set();
     menus.forEach((m) => p.add(m.pieces));
     return Array.from(p).sort((a, b) => a - b);
+  }, [menus]);
+
+  const totalPriceLt13 = useMemo(() => {
+    return menus
+      .filter((m) => m.pieces < 13)
+      .reduce((total, m) => total + (m.prix || 0), 0);
   }, [menus]);
 
   const emitChange = (payload) => {
@@ -179,21 +186,6 @@ function Sidebar({ menus = [], onChange }) {
         )}
       </div>
 
-      {/* Section Sans California */}
-      <div className="filter-section filter-section-spaced">
-        <div className="filter-checkbox-item">
-          <input
-            className="filter-checkbox"
-            type="checkbox"
-            id="no-california"
-            checked={noCalifornia}
-            onChange={onToggleNoCalifornia}
-          />
-          <label className="filter-checkbox-label" htmlFor="no-california">
-            Sans "California Saumon Avocat"
-          </label>
-        </div>
-      </div>
 
       {/* Section Prix */}
       <div className="filter-section">
@@ -262,23 +254,49 @@ function Sidebar({ menus = [], onChange }) {
                 </div>
               ))}
             </div>
-            <div className="filter-checkbox-item">
-              <input
-                className="filter-checkbox"
-                type="checkbox"
-                id="lt13"
-                checked={piecesFilter === "lt13"}
-                onChange={togglePiecesFilter}
-              />
-              <label className="filter-checkbox-label" htmlFor="lt13">
-                Moins de 13 pièces
-              </label>
-            </div>
             {selectedPieces.length > 0 && (
               <button type="button" className="filter-clear-link" onClick={clearPieces}>
                 Effacer
               </button>
             )}
+          </div>
+        )}
+      </div>
+
+      {/* Section Les plus demandés */}
+      <div className="filter-section">
+        <div className="filter-section-header" onClick={() => toggleSection("plusDemandes")}>
+          <span className="filter-section-title">LES PLUS DEMANDÉS</span>
+          <span className={`filter-arrow ${expandedSections.plusDemandes ? "expanded" : ""}`}>▼</span>
+        </div>
+        {expandedSections.plusDemandes && (
+          <div className="filter-section-content">
+            <div className="filter-checkboxes">
+              <div className="filter-checkbox-item">
+                <input
+                  className="filter-checkbox"
+                  type="checkbox"
+                  id="lt13"
+                  checked={piecesFilter === "lt13"}
+                  onChange={togglePiecesFilter}
+                />
+                <label className="filter-checkbox-label" htmlFor="lt13">
+                  Moins de 13 pièces
+                </label>
+              </div>
+              <div className="filter-checkbox-item">
+                <input
+                  className="filter-checkbox"
+                  type="checkbox"
+                  id="no-california"
+                  checked={noCalifornia}
+                  onChange={onToggleNoCalifornia}
+                />
+                <label className="filter-checkbox-label" htmlFor="no-california">
+                  Sans "California Saumon Avocat"
+                </label>
+              </div>
+            </div>
           </div>
         )}
       </div>

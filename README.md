@@ -40,7 +40,7 @@ L'application sera accessible sur `http://localhost:5173`
 
 ## Lien du site
 
-🔗 [Voir le site en ligne](https://sushifast.vercel.app)
+🔗 [Voir le site en ligne](https://athawa-sushifast.vercel.app/)
 
 ## Technologies utilisées
 

@@ -181,3 +181,24 @@
 .sidebar-search::placeholder {
   color: rgba(229, 231, 235, 0.6);
 }
+
+.price-total-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem 0;
+}
+
+.price-total-label {
+  color: #e5e7eb;
+  font-size: 0.85rem;
+  margin: 0;
+  opacity: 0.8;
+}
+
+.price-total-value {
+  color: #dc3545;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}

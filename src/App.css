@@ -225,6 +225,30 @@
   width: 100%;
 }
 
+.price-total-display {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.price-total-display-label {
+  color: #e5e7eb;
+  font-size: 0.9rem;
+  margin: 0 0 0.5rem 0;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.price-total-display-value {
+  color: #dc3545;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
 .cards-row {
   width: 100%;
   justify-content: flex-start;
