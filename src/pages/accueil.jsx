@@ -70,7 +70,7 @@ function Accueil() {
         {/* Titre principal et sous-texte en haut */}
         <div className="page-header-section">
           <p className="page-subtitle text-white mb-2">Découvrez notre sélection</p>
-          <h1 className="page-main-title text-white mb-5">頂きます</h1>
+          <h1 className="page-main-title text-white mb-4">頂きます</h1>
         </div>
 
         <div className="content-wrapper">

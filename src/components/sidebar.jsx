@@ -181,7 +181,7 @@ function Sidebar({ menus = [], onChange }) {
       </div>
 
       {/* Section Sans California */}
-      <div className="filter-section">
+      <div className="filter-section filter-section-spaced">
         <div className="filter-checkbox-item">
           <input
             className="filter-checkbox"

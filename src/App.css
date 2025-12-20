@@ -135,12 +135,14 @@
 .page-header-section {
   padding-left: 2rem;
   padding-right: 2rem;
-  margin-bottom: 3rem;
+  margin-bottom: 0;
+  padding-bottom: 0;
   text-align: left;
 }
 
+
 .page-subtitle {
-  font-size: 0.85rem;
+  font-size: 1.2rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   opacity: 0.7;
@@ -148,7 +150,7 @@
 }
 
 .page-main-title {
-  font-size: 3.5rem;
+  font-size: 5rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -163,8 +165,12 @@
     margin-bottom: 2rem;
   }
   
+  .page-subtitle {
+    font-size: 1rem;
+  }
+  
   .page-main-title {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
 }
 
@@ -181,6 +187,18 @@
   padding-left: 2rem;
   padding-right: 2rem;
   margin-top: 0;
+  position: relative;
+  padding-top: 3rem;
+}
+
+.content-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 1%;
+  right: 1%;
+  height: 2px;
+  background: rgba(255, 255, 255, 1);
 }
 
 @media (max-width: 991px) {
