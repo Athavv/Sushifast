@@ -9,6 +9,12 @@ function Sidebar({ menus = [], onChange }) {
   const [piecesFilter, setPiecesFilter] = useState("all"); // all | lt13
   const [selectedPieces, setSelectedPieces] = useState([]); // tableau de tailles choisies
   const [extreme, setExtreme] = useState("none"); // none | max | min
+  const [expandedSections, setExpandedSections] = useState({
+    saveurs: true,
+    prix: true,
+    pieces: true,
+    recherche: true,
+  });
 
   const uniqueSaveurs = useMemo(() => {
     const s = new Set();
@@ -90,95 +96,192 @@ function Sidebar({ menus = [], onChange }) {
     });
   }
 
+  function toggleSection(section) {
+    setExpandedSections((prev) => ({
+      ...prev,
+      [section]: !prev[section],
+    }));
+  }
+
+  function clearSaveurs() {
+    setSaveurs([]);
+    emitChange({ saveurs: [] });
+  }
+
+  function clearPieces() {
+    setSelectedPieces([]);
+    setPiecesFilter("all");
+    emitChange({ selectedPieces: [], piecesFilter: "all" });
+  }
+
+  function clearPrix() {
+    setExtreme("none");
+    emitChange({ extreme: "none" });
+  }
+
   return (
-    <aside className="sushi-sidebar rounded">
-      <h5 className="mb-3">Filtres</h5>
-
-      <div className="mb-3">
-        <input
-          type="search"
-          className="form-control"
-          placeholder="Rechercher un menu..."
-          value={search}
-          onChange={(e) => onSearchChange(e.target.value)}
-        />
+    <aside className="sushi-sidebar">
+      <div className="sidebar-header">
+        <h5 className="sidebar-title">FILTRER PAR</h5>
+        <button type="button" className="sidebar-clear-all" onClick={resetAll}>
+          Tout Effacer
+        </button>
       </div>
 
-      <div className="mb-3">
-        <strong>Saveurs</strong>
-        <div className="mt-2 d-flex flex-wrap gap-2">
-          {uniqueSaveurs.map((s) => (
-            <button
-              key={s}
-              type="button"
-              className={`btn btn-sm ${saveurs.includes(s) ? "btn-dark" : "btn-outline-dark"}`}
-              onClick={() => toggleSaveur(s)}
-            >
-              {s}
-            </button>
-          ))}
+      {/* Section Recherche */}
+      <div className="filter-section">
+        <div className="filter-section-header" onClick={() => toggleSection("recherche")}>
+          <span className="filter-section-title">RECHERCHE</span>
+          <span className={`filter-arrow ${expandedSections.recherche ? "expanded" : ""}`}>▼</span>
         </div>
+        {expandedSections.recherche && (
+          <div className="filter-section-content">
+            <input
+              type="search"
+              className="form-control sidebar-search"
+              placeholder="Rechercher un menu..."
+              value={search}
+              onChange={(e) => onSearchChange(e.target.value)}
+            />
+          </div>
+        )}
       </div>
 
-      <div className="mb-3 form-check">
-        <input className="form-check-input" type="checkbox" id="no-california" checked={noCalifornia} onChange={onToggleNoCalifornia} />
-        <label className="form-check-label" htmlFor="no-california">Sans "California Saumon Avocat"</label>
-      </div>
-
-      <hr />
-
-      <div className="mb-3">
-        <strong>Prix</strong>
-        <div className="d-flex flex-wrap gap-2 mt-2">
-          <button
-            type="button"
-            className={`btn btn-sm rounded-pill cacaBtn ${extreme === "max" ? "btn-danger" : "btn-outline-danger bg-danger text-white"}`}
-            onClick={() => toggleExtreme("max")}
-          >
-            Plus cher
-          </button>
-          <button
-            type="button"
-            className={`btn btn-sm rounded-pill cacaBtn ${extreme === "max" ? "btn-success" : "btn-outline-success bg-success text-white"}`}
-            onClick={() => toggleExtreme("max")}
-          >
-            Moins cher
-          </button>
+      {/* Section Saveurs */}
+      <div className="filter-section">
+        <div className="filter-section-header" onClick={() => toggleSection("saveurs")}>
+          <span className="filter-section-title">SAVEURS</span>
+          <span className={`filter-arrow ${expandedSections.saveurs ? "expanded" : ""}`}>▼</span>
         </div>
+        {expandedSections.saveurs && (
+          <div className="filter-section-content">
+            <div className="filter-checkboxes">
+              {uniqueSaveurs.map((s) => (
+                <div key={s} className="filter-checkbox-item">
+                  <input
+                    type="checkbox"
+                    id={`saveur-${s}`}
+                    checked={saveurs.includes(s)}
+                    onChange={() => toggleSaveur(s)}
+                    className="filter-checkbox"
+                  />
+                  <label htmlFor={`saveur-${s}`} className="filter-checkbox-label">
+                    {s}
+                  </label>
+                </div>
+              ))}
+            </div>
+            {saveurs.length > 0 && (
+              <button type="button" className="filter-clear-link" onClick={clearSaveurs}>
+                Effacer
+              </button>
+            )}
+          </div>
+        )}
       </div>
 
-      <div className="mb-3">
-        <strong>Tailles (pièces)</strong>
-        <div className="d-flex flex-wrap gap-2 mt-2">
-          {uniquePieces.map((p) => (
-            <button
-              key={p}
-              type="button"
-              className={`btn btn-sm ${selectedPieces.includes(p) ? "btn-primary" : "btn-outline-primary"}`}
-              onClick={() => togglePieceSize(p)}
-            >
-              {p} pcs
-            </button>
-          ))}
-        </div>
-        <div className="form-check mt-3">
+      {/* Section Sans California */}
+      <div className="filter-section">
+        <div className="filter-checkbox-item">
           <input
-            className="form-check-input"
+            className="filter-checkbox"
             type="checkbox"
-            id="lt13"
-            checked={piecesFilter === "lt13"}
-            onChange={togglePiecesFilter}
+            id="no-california"
+            checked={noCalifornia}
+            onChange={onToggleNoCalifornia}
           />
-          <label className="form-check-label" htmlFor="lt13">
-            Moins de 13 pièces
+          <label className="filter-checkbox-label" htmlFor="no-california">
+            Sans "California Saumon Avocat"
           </label>
         </div>
       </div>
 
-      <div className="d-grid">
-        <button type="button" className="btn btn-outline-secondary" onClick={resetAll}>
-          Réinitialiser les filtres
-        </button>
+      {/* Section Prix */}
+      <div className="filter-section">
+        <div className="filter-section-header" onClick={() => toggleSection("prix")}>
+          <span className="filter-section-title">PRIX</span>
+          <span className={`filter-arrow ${expandedSections.prix ? "expanded" : ""}`}>▼</span>
+        </div>
+        {expandedSections.prix && (
+          <div className="filter-section-content">
+            <div className="filter-checkboxes">
+              <div className="filter-checkbox-item">
+                <input
+                  type="checkbox"
+                  id="prix-max"
+                  checked={extreme === "max"}
+                  onChange={() => toggleExtreme("max")}
+                  className="filter-checkbox"
+                />
+                <label htmlFor="prix-max" className="filter-checkbox-label">
+                  Plus cher
+                </label>
+              </div>
+              <div className="filter-checkbox-item">
+                <input
+                  type="checkbox"
+                  id="prix-min"
+                  checked={extreme === "min"}
+                  onChange={() => toggleExtreme("min")}
+                  className="filter-checkbox"
+                />
+                <label htmlFor="prix-min" className="filter-checkbox-label">
+                  Moins cher
+                </label>
+              </div>
+            </div>
+            {extreme !== "none" && (
+              <button type="button" className="filter-clear-link" onClick={clearPrix}>
+                Effacer
+              </button>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* Section Tailles */}
+      <div className="filter-section">
+        <div className="filter-section-header" onClick={() => toggleSection("pieces")}>
+          <span className="filter-section-title">TAILLES (PIÈCES)</span>
+          <span className={`filter-arrow ${expandedSections.pieces ? "expanded" : ""}`}>▼</span>
+        </div>
+        {expandedSections.pieces && (
+          <div className="filter-section-content">
+            <div className="filter-checkboxes filter-pieces-list">
+              {uniquePieces.map((p) => (
+                <div key={p} className="filter-checkbox-item">
+                  <input
+                    type="checkbox"
+                    id={`piece-${p}`}
+                    checked={selectedPieces.includes(p)}
+                    onChange={() => togglePieceSize(p)}
+                    className="filter-checkbox"
+                  />
+                  <label htmlFor={`piece-${p}`} className="filter-checkbox-label">
+                    {p} pièces
+                  </label>
+                </div>
+              ))}
+            </div>
+            <div className="filter-checkbox-item">
+              <input
+                className="filter-checkbox"
+                type="checkbox"
+                id="lt13"
+                checked={piecesFilter === "lt13"}
+                onChange={togglePiecesFilter}
+              />
+              <label className="filter-checkbox-label" htmlFor="lt13">
+                Moins de 13 pièces
+              </label>
+            </div>
+            {selectedPieces.length > 0 && (
+              <button type="button" className="filter-clear-link" onClick={clearPieces}>
+                Effacer
+              </button>
+            )}
+          </div>
+        )}
       </div>
     </aside>
   );

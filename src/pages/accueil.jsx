@@ -67,45 +67,71 @@ function Accueil() {
       <Hero />
 
       <Container fluid id="menu-list" className="my-5 pt-5 px-0">
-        <Row className="g-0 layout-row">
-          <Col className="mb-4 sidebar-col">
+        {/* Titre principal et sous-texte en haut */}
+        <div className="page-header-section">
+          <p className="page-subtitle text-white mb-2">Découvrez notre sélection</p>
+          <h1 className="page-main-title text-white mb-5">頂きます</h1>
+        </div>
+
+        <div className="content-wrapper">
+          <div className="sidebar-wrapper">
             <Sidebar menus={menus} onChange={(f) => setFilters(f)} />
-          </Col>
+          </div>
 
-          <Col className="cards-col">
-            <h1 className="display-2 fw-bold sushi-accueil-title text-center text-white">頂きます</h1>
-            <Row className="mt-4 cards-row justify-content-center">
+          <div className="cards-wrapper">
+            <Row className="cards-row g-4">
               {filtered.map((item) => (
-                <Col key={item.id} md={6} lg={4} className="mb-4">
-                  <Card className="h-100 menu-card">
-                  <Card.Img
-                    variant="top"
-                    src={`/images/${item.image}.jpg`}
-                    alt={item.nom}
-                    className="menu-card-img"
-                    style={{ height: "250px", objectFit: "cover" }}
-                  />
-                    <Card.Body className="text-center">
-                      <Card.Title className="fw-bold">{item.nom}</Card.Title>
-                      <Card.Text>{item.pieces} pièces</Card.Text>
-                      <Card.Text className="fw-bold text-danger">{item.prix} €</Card.Text>
+                <Col key={item.id} xs={12} sm={6} md={6} lg={4} xl={3} className="d-flex">
+                  <Card className="menu-card w-100">
+                    <Card.Body className="d-flex flex-column p-0">
+                      {/* Titre avec nombre de pièces en haut */}
+                      <div className="menu-card-header text-center py-3">
+                        <Card.Title className="fw-bold mb-0 menu-card-pieces">
+                          {item.pieces} PIÈCES
+                        </Card.Title>
+                      </div>
 
-                      <Card.Text>
-                        {item.saveurs && item.saveurs.map((saveur, index) => (
-                          <span key={index} className="me-1">{saveur}</span>
-                        ))}
-                      </Card.Text>
+                      {/* Image au centre */}
+                      <div className="menu-card-image-wrapper">
+                        <Card.Img
+                          src={`/images/${item.image}.jpg`}
+                          alt={item.nom}
+                          className="menu-card-img"
+                        />
+                      </div>
 
-                      <div className="d-grid mt-3">
-                      <Link to={`/menu/${item.id}`} className=" cacaBtn btn rounded-pill mx-1 bg-danger">Voir détails</Link>
+                      {/* Prix et nom en bas */}
+                      <div className="menu-card-footer text-center py-3 px-3">
+                        <Card.Text className="fw-bold text-danger mb-2 menu-card-price">
+                          {item.prix} €
+                        </Card.Text>
+                        <Card.Title className="fw-bold mb-2 menu-card-name">
+                          {item.nom.toUpperCase()}
+                        </Card.Title>
+
+                        {/* Saveurs (optionnel, peut être masqué ou stylisé différemment) */}
+                        {item.saveurs && item.saveurs.length > 0 && (
+                          <Card.Text className="menu-card-saveurs mb-3">
+                            {item.saveurs.map((saveur, index) => (
+                              <span key={index} className="me-1 badge bg-secondary">{saveur}</span>
+                            ))}
+                          </Card.Text>
+                        )}
+
+                        {/* Bouton Voir détails */}
+                        <div className="d-grid mt-2">
+                          <Link to={`/menu/${item.id}`} className="cacaBtn btn rounded-pill mx-1 bg-danger">
+                            Voir détails
+                          </Link>
+                        </div>
                       </div>
                     </Card.Body>
                   </Card>
                 </Col>
               ))}
             </Row>
-          </Col>
-        </Row>
+          </div>
+        </div>
       </Container>
     </>
   );

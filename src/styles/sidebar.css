@@ -1,60 +1,173 @@
 .sushi-sidebar {
-  background: #0b1220; /* même teinte que le fond du site */
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+  background: transparent;
   color: #ffffff;
   min-height: 70vh;
-  padding-inline: 0.5rem;
-  max-width: 250px; /* rend visuellement la barre très fine */
+  padding: 0;
+  width: 100%;
+  border: none;
+  border-radius: 0;
 }
 
-.sushi-sidebar:hover {
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.28);
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 1.25rem;
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 1);
 }
 
-.sushi-sidebar h5 {
+.sidebar-title {
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0;
+}
+
+.sidebar-clear-all {
+  background: none;
+  border: none;
+  color: #e5e7eb;
+  font-size: 0.85rem;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.sidebar-clear-all:hover {
+  color: #ffffff;
+}
+
+.filter-section {
+  border-bottom: 1px solid rgba(255, 255, 255, 1);
+}
+
+.filter-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+.filter-section-header:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.filter-section-title {
+  font-weight: 600;
+  font-size: 0.85rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: #ffffff;
 }
 
-.sushi-sidebar .form-check-label {
-  text-transform: capitalize;
-  color: #ffffff;
-  font-size: 0.85rem;
-}
-
-.sushi-sidebar .btn {
+.filter-arrow {
   font-size: 0.7rem;
-  padding: 0.15rem 0.5rem;
+  color: #e5e7eb;
+  transition: transform 0.2s ease;
+  display: inline-block;
 }
 
-.sushi-sidebar input[type="search"] {
+.filter-arrow.expanded {
+  transform: rotate(180deg);
+}
+
+.filter-section-content {
+  padding: 0.75rem 1.25rem 1.25rem 1.25rem;
+}
+
+.filter-checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.filter-pieces-list {
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.filter-pieces-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.filter-pieces-list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.filter-pieces-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.filter-pieces-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.filter-checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.filter-checkbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #dc3545;
+  flex-shrink: 0;
+}
+
+.filter-checkbox-label {
+  color: #e5e7eb;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-transform: capitalize;
+  user-select: none;
+}
+
+.filter-clear-link {
+  background: none;
+  border: none;
+  color: #e5e7eb;
+  font-size: 0.85rem;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 0.75rem;
+  transition: color 0.2s ease;
+}
+
+.filter-clear-link:hover {
+  color: #ffffff;
+}
+
+.sidebar-search {
   box-shadow: none;
   background: rgba(255, 255, 255, 0.06);
-  color: inherit;
-  border-color: rgba(255, 255, 255, 0.12);
-}
-
-.sushi-sidebar input[type="search"]::placeholder {
-  color: inherit;
-}
-
-.sushi-sidebar hr {
-  opacity: 0.25;
-}
-
-.sushi-sidebar .btn-outline-secondary {
-  border-color: rgba(255, 255, 255, 0.35);
   color: #e5e7eb;
+  border-color: rgba(255, 255, 255, 0.12);
+  font-size: 0.9rem;
+  padding: 0.5rem 0.75rem;
 }
 
-.sushi-sidebar .btn-outline-secondary:hover {
+.sidebar-search:focus {
   background: rgba(255, 255, 255, 0.08);
-  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  box-shadow: none;
+}
+
+.sidebar-search::placeholder {
+  color: rgba(229, 231, 235, 0.6);
 }
 
 
