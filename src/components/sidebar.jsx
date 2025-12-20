@@ -81,8 +81,12 @@ function Sidebar({ menus = [], onChange }) {
     const exists = selectedPieces.includes(size);
     const next = exists ? selectedPieces.filter((p) => p !== size) : [...selectedPieces, size];
     setSelectedPieces(next);
-    setPiecesFilter("all");
-    emitChange({ selectedPieces: next, piecesFilter: "all" });
+    if (next.length > 0 && piecesFilter === "lt13") {
+      setPiecesFilter("all");
+      emitChange({ selectedPieces: next, piecesFilter: "all" });
+    } else {
+      emitChange({ selectedPieces: next });
+    }
   }
 
   function resetAll() {
@@ -116,8 +120,7 @@ function Sidebar({ menus = [], onChange }) {
 
   function clearPieces() {
     setSelectedPieces([]);
-    setPiecesFilter("all");
-    emitChange({ selectedPieces: [], piecesFilter: "all" });
+    emitChange({ selectedPieces: [] });
   }
 
   function clearPrix() {

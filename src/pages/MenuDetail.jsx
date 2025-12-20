@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getMenuById } from "../utils/boitesServices";
 import { Container, Row, Col, Button, Badge, Spinner } from "react-bootstrap";
-import "../styles/menuDetail.css";
+import "../styles/MenuDetail.css";
 
 function MenuDetail() {
   const { id } = useParams();
