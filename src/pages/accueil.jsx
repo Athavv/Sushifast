@@ -21,7 +21,6 @@ function Accueil() {
   }, []);
 
   const filtered = useMemo(() => {
-    // 1. Filtres locaux (recherche, saveurs, sans California Saumon Avocat)
     let base = menus.filter((m) => {
       if (filters.search && !m.nom.toLowerCase().includes(filters.search.toLowerCase())) {
         return false;
@@ -37,12 +36,10 @@ function Accueil() {
         if (hasCalifornia) return false;
       }
 
-      // Filtre par tailles exactes sélectionnées
       if (filters.selectedPieces.length > 0 && !filters.selectedPieces.includes(m.pieces)) {
         return false;
       }
 
-      // Filtre par règle < 13 pièces
       if (filters.piecesFilter === "lt13" && m.pieces >= 13) {
         return false;
       }
@@ -50,7 +47,6 @@ function Accueil() {
       return true;
     });
 
-    // Filtre extrême (plus cher / moins cher) sur le résultat déjà filtré
     if (filters.extreme === "max" && base.length > 0) {
       const maxPrice = Math.max(...base.map((m) => m.prix || 0));
       base = base.filter((m) => m.prix === maxPrice);
@@ -67,7 +63,6 @@ function Accueil() {
       <Hero />
 
       <Container fluid id="menu-list" className="my-5 pt-5 px-0">
-        {/* Titre principal et sous-texte en haut */}
         <div className="page-header-section">
           <p className="page-subtitle text-white mb-2">Découvrez notre sélection</p>
           <h1 className="page-main-title text-white mb-4">頂きます</h1>
@@ -84,14 +79,12 @@ function Accueil() {
                 <Col key={item.id} xs={12} sm={6} md={6} lg={4} xl={3} className="d-flex">
                   <Card className="menu-card w-100">
                     <Card.Body className="d-flex flex-column p-0">
-                      {/* Titre avec nombre de pièces en haut */}
                       <div className="menu-card-header text-center py-3">
                         <Card.Title className="fw-bold mb-0 menu-card-pieces">
                           {item.pieces} PIÈCES
                         </Card.Title>
                       </div>
 
-                      {/* Image au centre */}
                       <div className="menu-card-image-wrapper">
                         <Card.Img
                           src={`/images/${item.image}.jpg`}
@@ -100,7 +93,6 @@ function Accueil() {
                         />
                       </div>
 
-                      {/* Prix et nom en bas */}
                       <div className="menu-card-footer text-center py-3 px-3">
                         <Card.Text className="fw-bold text-danger mb-2 menu-card-price">
                           {item.prix} €
@@ -109,8 +101,7 @@ function Accueil() {
                           {item.nom.toUpperCase()}
                         </Card.Title>
 
-                        {/* Saveurs (optionnel, peut être masqué ou stylisé différemment) */}
-                        {item.saveurs && item.saveurs.length > 0 && (
+                        {item.saveurs?.length > 0 && (
                           <Card.Text className="menu-card-saveurs mb-3">
                             {item.saveurs.map((saveur, index) => (
                               <span key={index} className="me-1 badge bg-secondary">{saveur}</span>
@@ -118,9 +109,8 @@ function Accueil() {
                           </Card.Text>
                         )}
 
-                        {/* Bouton Voir détails */}
                         <div className="d-grid mt-2">
-                          <Link to={`/menu/${item.id}`} className="cacaBtn btn rounded-pill mx-1 bg-danger">
+                          <Link to={`/menu/${item.id}`} className="btn-primary-custom btn rounded-pill mx-1 bg-danger">
                             Voir détails
                           </Link>
                         </div>

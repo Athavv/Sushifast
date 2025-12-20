@@ -19,7 +19,7 @@ SushiFast est une application web développée avec React et Vite permettant aux
 
 1. Cloner le repository :
 ```bash
-git clone [<url-du-repo>](https://github.com/Athavv/Sushifast)
+git clone https://github.com/Athavv/Sushifast
 cd Sushifast
 ```
 
@@ -38,6 +38,9 @@ npm run dev
 ```
 L'application sera accessible sur `http://localhost:5173`
 
+## Lien du site
+
+🔗 [Voir le site en ligne](https://sushifast.vercel.app)
 
 ## Technologies utilisées
 

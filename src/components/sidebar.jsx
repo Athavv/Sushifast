@@ -6,9 +6,9 @@ function Sidebar({ menus = [], onChange }) {
   const [search, setSearch] = useState("");
   const [saveurs, setSaveurs] = useState([]);
   const [noCalifornia, setNoCalifornia] = useState(false);
-  const [piecesFilter, setPiecesFilter] = useState("all"); // all | lt13
-  const [selectedPieces, setSelectedPieces] = useState([]); // tableau de tailles choisies
-  const [extreme, setExtreme] = useState("none"); // none | max | min
+  const [piecesFilter, setPiecesFilter] = useState("all");
+  const [selectedPieces, setSelectedPieces] = useState([]);
+  const [extreme, setExtreme] = useState("none");
   const [expandedSections, setExpandedSections] = useState({
     saveurs: true,
     prix: true,
@@ -74,7 +74,6 @@ function Sidebar({ menus = [], onChange }) {
     const exists = selectedPieces.includes(size);
     const next = exists ? selectedPieces.filter((p) => p !== size) : [...selectedPieces, size];
     setSelectedPieces(next);
-    // Si on choisit des tailles exactes, on force le filtre global sur "all" pour éviter le conflit visuel
     setPiecesFilter("all");
     emitChange({ selectedPieces: next, piecesFilter: "all" });
   }

@@ -1,4 +1,3 @@
-// src/components/footer.jsx
 import { Container } from "react-bootstrap";
 import "../styles/footer.css";
 

@@ -14,17 +14,17 @@
   outline: none !important;
 }
 
-.cacaBtn {
+.btn-primary-custom {
   font-weight: 700 !important;
   box-shadow: none !important;
   outline: none !important;
   color: #fff !important;
 }
 
-.cacaBtn:focus,
-.cacaBtn:focus-visible,
-.cacaBtn:active:focus,
-.cacaBtn:active:focus-visible {
+.btn-primary-custom:focus,
+.btn-primary-custom:focus-visible,
+.btn-primary-custom:active:focus,
+.btn-primary-custom:active:focus-visible {
   box-shadow: none !important;
   outline: none !important;
 }
@@ -136,10 +136,8 @@
   padding-left: 2rem;
   padding-right: 2rem;
   margin-bottom: 0;
-  padding-bottom: 0;
   text-align: left;
 }
-
 
 .page-subtitle {
   font-size: 1.2rem;
@@ -231,12 +229,6 @@
   width: 100%;
   justify-content: flex-start;
   margin: 0;
-}
-
-@media (max-width: 768px) {
-  .page-main-title {
-    font-size: 2.5rem;
-  }
 }
 
 @media (max-width: 576px) {
